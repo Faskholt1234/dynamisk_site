@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FashionRUs - Product Detail</title>
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>
+        Fashion<span
+          style="color: #f33; display: inline-block; transform: scaleX(-1)"
+          >R</span
+        >Us
+      </h1>
+      <nav style="text-align: right; margin-bottom: 2rem">
+        <a href="index.html">Categories</a> <a href="#">Brands</a>
+        <a href="#">Seasons</a>
+      </nav>
+    </header>
+    <main class="product-detail" id="product-detail"></main>
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>© EK ARC.</p>
+      </div>
+    </footer>
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const id = params.get("id");
+      if (id) {
+        fetch(`https://kea-alt-del.dk/t7/api/products/${id}`)
+          .then((res) => res.json())
+          .then((product) => {
+            const main = document.getElementById("product-detail");
+            main.innerHTML = `
+              <img src="https://kea-alt-del.dk/t7/images/webp/1000/${product.id}.webp" alt="${product.productdisplayname}" />
+              <div class="product-detail-info">
+                <h2>Product Information</h2>
+                <p><strong>Model name</strong><br />${product.productdisplayname}</p>
+                <p><strong>Color</strong><br />${product.basecolor || "-"}</p>
+                <p><strong>Inventory number</strong><br />${product.id}</p>
+                <h3>${product.brandname}</h3>
+                <p>${product.brandbio || ""}</p>
+                ${product.discount ? `<p class='discountBadge'>Nedsat ${Math.round((product.discount / product.price) * 100)}%</p>` : ""}
+                ${product.soldout ? `<p class='soldOutBadge'>Sold Out</p>` : ""}
+              </div>
+              <div class="product-detail-sidebar">
+                ${product.productdisplayname}<br />
+                ${product.brandname} | ${product.articletype}<br />
+                <label for="size">Choose a size</label>
+                <select id="size">
+                  <option>S</option>
+                  <option>M</option>
+                  <option>L</option>
+                </select><br />
+                <button>Add to basket</button>
+              </div>
+            `;
+          });
+      } else {
+        document.getElementById("product-detail").innerHTML =
+          "<p>No product selected.</p>";
+      }
+    </script>
+  </body>
+</html>

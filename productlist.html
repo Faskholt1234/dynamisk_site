@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FashionRUs - Products</title>
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>
+        Fashion<span
+          style="color: #f33; display: inline-block; transform: scaleX(-1)"
+          >R</span
+        >Us
+      </h1>
+      <nav style="text-align: right; margin-bottom: 2rem">
+        <a href="index.html">Categories</a> <a href="#">Brands</a>
+        <a href="#">Seasons</a>
+      </nav>
+    </header>
+    <div
+      class="filter-buttons"
+      style="
+        display: flex;
+        gap: 1rem;
+        justify-content: left;
+        margin: 2rem 0 2rem 2rem;
+      "
+    >
+      <button>All</button>
+      <button>Unisex</button>
+      <button>Women</button>
+      <button>Men</button>
+    </div>
+    <div
+      id="sorter"
+      style="
+        display: flex;
+        gap: 1rem;
+        justify-content: left;
+        margin: 2rem 0 2rem 2rem;
+      "
+    >
+      <button data-text="az">A–Z</button>
+      <button data-text="za">Z–A</button>
+      <button data-price="up">Lav–høj</button>
+      <button data-price="down">Høj–lav</button>
+    </div>
+    <main class="main"></main>
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>© EK ARC.</p>
+      </div>
+    </footer>
+    <script src="js/productlist.js"></script>
+  </body>
+</html>
